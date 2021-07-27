@@ -272,7 +272,7 @@ $(document).ready(function () {
 
             //Consulta o webservice receitaws.com.br/
             $.ajax({
-                url: "https://apicarros.com/v2/consultas/" + ndocumento + "/f63e1e63dd231083d38ce929984aac7d",
+                url: "https://apicarros.com/v2/consultas/" + ndocumento,
                 //url: "https://apicarros.com/v1/consulta/" + ndocumento + "/json",
                 dataType: 'json',
                 crossDomain: true,
