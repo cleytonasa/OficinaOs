@@ -39,7 +39,7 @@ $config['app_subname'] = 'Sistema de Controle de Ordens de Serviço Para Oficina
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost';
+$config['base_url'] = 'enter_baseurl';
 
 /*
 |--------------------------------------------------------------------------
@@ -341,7 +341,7 @@ $config['cache_query_string'] = false;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '40ad83e080dc2a7';
+$config['encryption_key'] = 'enter_encryption_key';
 
 /*
 |--------------------------------------------------------------------------
