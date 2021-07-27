@@ -624,12 +624,6 @@
                                                 <span class="lbl"> Sistema</span>
                                             </label>
                                         </td>
-                                        <td>
-                                            <label>
-                                                <input <?php echo (isset($permissoes['cEmpresa']) && $permissoes['cEmpresa'] == 1) ? 'checked' : ''; ?> name="cEmpresa" class="marcar" type="checkbox" value="1" />
-                                                <span class="lbl"> Empresa</span>
-                                            </label>
-                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
