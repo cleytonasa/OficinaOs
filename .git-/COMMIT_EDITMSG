@@ -1,0 +1,21 @@
+fixs
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch and 'OficinaOs/master' have diverged,
+# and have 3 and 1 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# Last command done (1 command done):
+#    pick fba7026 fixs
+# Next commands to do (2 remaining commands):
+#    pick 6bd7f81 fixs # empty
+#    pick 3b401ee nome app
+# You are currently editing a commit while rebasing branch 'master' on 'a1476bc'.
+#
+# Changes to be committed:
+#	modified:   banco.sql
+#	modified:   index.php
+#
