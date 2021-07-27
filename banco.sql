@@ -11,67 +11,6 @@ SET
   SQL_MODE = 'TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Table `carros`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `carros` (
-  idCarros int NOT NULL AUTO_INCREMENT,
-  idClientes int NOT NULL,
-  carro varchar(255) NOT NULL,
-  placa varchar(10) NOT NULL,
-  montadora varchar(255) DEFAULT NULL,
-  anoFabricacao varchar(4) NOT NULL,
-  anoModelo varchar(4) DEFAULT NULL,
-  cor varchar(50) DEFAULT NULL,
-  chassi varchar(50) DEFAULT NULL,
-  municipio varchar(50) DEFAULT NULL,
-  uf char(2) DEFAULT NULL,
-  status varchar(100) DEFAULT NULL,
-  dataCadastro datetime(3) DEFAULT (CURRENT_TIMESTAMP(3)),
-  dataAlteracao datetime(3) DEFAULT NULL,
-  PRIMARY KEY (idCarros)
-) ENGINE = INNODB,
-AUTO_INCREMENT = 5,
-AVG_ROW_LENGTH = 5461,
-CHARACTER SET utf8mb4,
-COLLATE utf8mb4_general_ci;
-
-ALTER TABLE
-  mapos.carros
-ADD
-  UNIQUE INDEX placa (placa);
-
---
--- Create table `carros_os`
---
-CREATE TABLE IF NOT EXISTS `carros_os` (
-  idCarros_os int NOT NULL AUTO_INCREMENT,
-  carro varchar(250) DEFAULT NULL,
-  os_id int NOT NULL,
-  carros_id int NOT NULL,
-  PRIMARY KEY (idCarros_os)
-) ENGINE = INNODB,
-AUTO_INCREMENT = 32,
-AVG_ROW_LENGTH = 8192,
-CHARACTER SET latin1,
-COLLATE latin1_swedish_ci;
-
---
--- Create foreign key
---
-ALTER TABLE
-  carros_os
-ADD
-  CONSTRAINT fk_carros_os_os1 FOREIGN KEY (os_id) REFERENCES os (idOs);
-
---
--- Create foreign key
---
-ALTER TABLE
-  carros_os
-ADD
-  CONSTRAINT fk_carros_os_servicos1 FOREIGN KEY (carros_id) REFERENCES carros (idCarros);
-
--- -----------------------------------------------------
 -- Table `ci_sessions`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ci_sessions` (
@@ -576,7 +515,7 @@ VALUES
   (
     1,
     'Administrador',
-    'a:53:{s:8:"aCliente";s:1:"1";s:8:"eCliente";s:1:"1";s:8:"dCliente";s:1:"1";s:8:"vCliente";s:1:"1";s:8:"aProduto";s:1:"1";s:8:"eProduto";s:1:"1";s:8:"dProduto";s:1:"1";s:8:"vProduto";s:1:"1";s:8:"aServico";s:1:"1";s:8:"eServico";s:1:"1";s:8:"dServico";s:1:"1";s:8:"vServico";s:1:"1";s:3:"aOs";s:1:"1";s:3:"eOs";s:1:"1";s:3:"dOs";s:1:"1";s:3:"vOs";s:1:"1";s:6:"aVenda";s:1:"1";s:6:"eVenda";s:1:"1";s:6:"dVenda";s:1:"1";s:6:"vVenda";s:1:"1";s:9:"aGarantia";s:1:"1";s:9:"eGarantia";s:1:"1";s:9:"dGarantia";s:1:"1";s:9:"vGarantia";s:1:"1";s:8:"aArquivo";s:1:"1";s:8:"eArquivo";s:1:"1";s:8:"dArquivo";s:1:"1";s:8:"vArquivo";s:1:"1";s:10:"aPagamento";N;s:10:"ePagamento";N;s:10:"dPagamento";N;s:10:"vPagamento";N;s:11:"aLancamento";s:1:"1";s:11:"eLancamento";s:1:"1";s:11:"dLancamento";s:1:"1";s:11:"vLancamento";s:1:"1";s:8:"cUsuario";s:1:"1";s:9:"cEmitente";s:1:"1";s:10:"cPermissao";s:1:"1";s:7:"cBackup";s:1:"1";s:10:"cAuditoria";s:1:"1";s:6:"cEmail";s:1:"1";s:8:"cSistema";s:1:"1";s:8:"rCliente";s:1:"1";s:8:"rProduto";s:1:"1";s:8:"rServico";s:1:"1";s:3:"rOs";s:1:"1";s:6:"rVenda";s:1:"1";s:11:"rFinanceiro";s:1:"1";s:9:"aCobranca";s:1:"1";s:9:"eCobranca";s:1:"1";s:9:"dCobranca";s:1:"1";s:9:"vCobranca";s:1:"1";}',
+    'a:57:{s:8:"aCliente";s:1:"1";s:8:"eCliente";s:1:"1";s:8:"dCliente";s:1:"1";s:8:"vCliente";s:1:"1";s:6:"aCarro";s:1:"1";s:6:"eCarro";s:1:"1";s:6:"dCarro";s:1:"1";s:6:"vCarro";s:1:"1";s:8:"aProduto";s:1:"1";s:8:"eProduto";s:1:"1";s:8:"dProduto";s:1:"1";s:8:"vProduto";s:1:"1";s:8:"aServico";s:1:"1";s:8:"eServico";s:1:"1";s:8:"dServico";s:1:"1";s:8:"vServico";s:1:"1";s:3:"aOs";s:1:"1";s:3:"eOs";s:1:"1";s:3:"dOs";s:1:"1";s:3:"vOs";s:1:"1";s:6:"aVenda";s:1:"1";s:6:"eVenda";s:1:"1";s:6:"dVenda";s:1:"1";s:6:"vVenda";s:1:"1";s:9:"aGarantia";s:1:"1";s:9:"eGarantia";s:1:"1";s:9:"dGarantia";s:1:"1";s:9:"vGarantia";s:1:"1";s:8:"aArquivo";s:1:"1";s:8:"eArquivo";s:1:"1";s:8:"dArquivo";s:1:"1";s:8:"vArquivo";s:1:"1";s:10:"aPagamento";N;s:10:"ePagamento";N;s:10:"dPagamento";N;s:10:"vPagamento";N;s:11:"aLancamento";s:1:"1";s:11:"eLancamento";s:1:"1";s:11:"dLancamento";s:1:"1";s:11:"vLancamento";s:1:"1";s:8:"cUsuario";s:1:"1";s:9:"cEmitente";s:1:"1";s:10:"cPermissao";s:1:"1";s:7:"cBackup";s:1:"1";s:10:"cAuditoria";s:1:"1";s:6:"cEmail";s:1:"1";s:8:"cSistema";s:1:"1";s:8:"rCliente";s:1:"1";s:8:"rProduto";s:1:"1";s:8:"rServico";s:1:"1";s:3:"rOs";s:1:"1";s:6:"rVenda";s:1:"1";s:11:"rFinanceiro";s:1:"1";s:9:"aCobranca";s:1:"1";s:9:"eCobranca";s:1:"1";s:9:"dCobranca";s:1:"1";s:9:"vCobranca";s:1:"1";}',
     1,
     'admin_created_at'
   );
@@ -628,6 +567,55 @@ INSERT INTO
   `migrations`(`version`)
 VALUES
   ('20210125173740');
+
+-- -----------------------------------------------------
+-- Table `carros`
+-- -----------------------------------------------------
+CREATE TABLE carros (
+  idCarros int NOT NULL AUTO_INCREMENT,
+  idClientes int NOT NULL,
+  carro varchar(255) NOT NULL,
+  placa varchar(10) NOT NULL,
+  montadora varchar(255) DEFAULT NULL,
+  anoFabricacao varchar(4) NOT NULL,
+  anoModelo varchar(4) DEFAULT NULL,
+  cor varchar(50) DEFAULT NULL,
+  chassi varchar(50) DEFAULT NULL,
+  municipio varchar(50) DEFAULT NULL,
+  uf char(2) DEFAULT NULL,
+  status varchar(100) DEFAULT NULL,
+  dataCadastro datetime(3) DEFAULT (CURRENT_TIMESTAMP(3)),
+  dataAlteracao datetime(3) DEFAULT NULL,
+  PRIMARY KEY (idCarros),
+  UNIQUE INDEX (placa)
+) ENGINE = INNODB;
+
+--
+-- Create table `carros_os`
+--
+CREATE TABLE IF NOT EXISTS `carros_os` (
+  idCarros_os int NOT NULL AUTO_INCREMENT,
+  carro varchar(250) DEFAULT NULL,
+  os_id int NOT NULL,
+  carros_id int NOT NULL,
+  PRIMARY KEY (idCarros_os)
+) ENGINE = INNODB;
+
+--
+-- Create foreign key
+--
+ALTER TABLE
+  carros_os
+ADD
+  CONSTRAINT fk_carros_os_os1 FOREIGN KEY (os_id) REFERENCES os (idOs);
+
+--
+-- Create foreign key
+--
+ALTER TABLE
+  carros_os
+ADD
+  CONSTRAINT fk_carros_os_servicos1 FOREIGN KEY (carros_id) REFERENCES carros (idCarros);
 
 SET
   SQL_MODE = @OLD_SQL_MODE;
