@@ -126,11 +126,9 @@ class Carros extends MY_Controller
             }
         }
 
-        $idClientes = $_SESSION['clientes']['idClientes'];
         $this->data['result'] = $this->carros_model->getById($this->uri->segment(3));
         $this->data['results'] = $this->carros_model->getClienteByCarro($this->uri->segment(3));
         $this->data['view'] = 'carros/editarCarro';
-        $_SESSION['clientes']['idClientes'] = null;
         return $this->layout();
     }
 
@@ -145,14 +143,11 @@ class Carros extends MY_Controller
             $this->session->set_flashdata('error', 'Você não tem permissão para visualizar carros.');
             redirect(base_url());
         }
-        // Talvez exista forma melhor de fazer isso, verificar
-        $idClientes = $_SESSION['clientes']['idClientes'];
         $this->data['custom_error'] = '';
         $this->data['result'] = $this->carros_model->getById($this->uri->segment(3));
         $this->data['results'] = $this->carros_model->getClienteByCarro($this->uri->segment(3));
         //$this->data['results'] = $this->carros_model->getClienteByCarro($idClientes);
         $this->data['view'] = 'carros/visualizar';
-        $_SESSION['clientes']['idClientes'] = null;
         return $this->layout();
     }
 
