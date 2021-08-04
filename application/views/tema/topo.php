@@ -42,7 +42,7 @@
       location.href = '<?= site_url('vendas'); ?>';
     });
     shortcut.add("F7", function() {
-      location.href = '<?= site_url('garantias'); ?>';
+      location.href = '<?= site_url('carros'); ?>';
     });
     shortcut.add("F8", function() {});
     shortcut.add("F9", function() {});
