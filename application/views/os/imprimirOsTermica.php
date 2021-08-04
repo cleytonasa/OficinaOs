@@ -4,7 +4,7 @@ $totalProdutos = 0; ?>
 <html lang="pt-br">
 
 <head>
-    <title>Map OS</title>
+    <title>Oficina OS</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" />
@@ -36,12 +36,14 @@ $totalProdutos = 0; ?>
 
                                     <tr>
                                         <td colspan="5" class="alert">Você precisa configurar os dados do emitente. >>><a href="<?php echo base_url(); ?>index.php/mapos/emitente">Configurar</a>
-                                            <<<</td> </tr> <?php } else { ?> <tr>
+                                            <<<< /td>
+                                    </tr> <?php } else { ?> <tr>
 
                                         <td colspan="5" style="text-align: center"> <span style="font-size: 20px; ">
                                                 <?php echo $emitente[0]->nome; ?></span> </br>
                                             <span style="font-size: 10px; ">CNPJ: <?php echo $emitente[0]->cnpj; ?> </br>
-                                                <?php echo $emitente[0]->rua . ', ' . $emitente[0]->numero . ' ' . $emitente[0]->bairro . ' -  ' . $emitente[0]->cidade . ' - ' . $emitente[0]->uf; ?> </span> </br> <span>Fone: <?php echo $emitente[0]->telefone; ?></span></td>
+                                                <?php echo $emitente[0]->rua . ', ' . $emitente[0]->numero . ' ' . $emitente[0]->bairro . ' -  ' . $emitente[0]->cidade . ' - ' . $emitente[0]->uf; ?> </span> </br> <span>Fone: <?php echo $emitente[0]->telefone; ?></span>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td style="width: 100%; font-size: 10px;"><b>N° OS:</b> <span><?php echo $result->idOs ?></span><span style="padding-left: 5%;"><b>Emissão:</b> <?php echo date('d/m/Y') ?></span></td>
@@ -50,7 +52,7 @@ $totalProdutos = 0; ?>
                                 <?php } ?>
                             </tbody>
                         </table>
-    
+
                         <table class="table table-condensend">
                             <tbody>
                                 <tr>
@@ -148,6 +150,28 @@ $totalProdutos = 0; ?>
                             </tbody>
                         </table>
 
+                        <table class="table table-bordered">
+                            <?php if ($carros != null) { ?>
+                                <thead>
+                                    <tr>
+                                        <th>Carro</th>
+                                        <th>Placa</th>
+                                        <th>Montadora</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    foreach ($carros as $a) {
+                                        echo '<tr>';
+                                        echo '<td>' . $a->carroSimples . '</td>';
+                                        echo '<td>' . $a->placa . '</td>';
+                                        echo '<td>' . $a->montadora . '</td>';
+                                        echo '</tr>';
+                                    }
+                                    ?>
+                                </tbody>
+                            <?php } ?>
+                        </table>ss
 
                         <?php if ($produtos != null) { ?>
                             <br />
