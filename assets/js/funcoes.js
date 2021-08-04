@@ -3,7 +3,35 @@ $(function () {
     $("#cep").mask("00000-000")
     $('#cpfUser').mask('000.000.000-00', { reverse: true });
     $('.cnpjEmitente').mask('00.000.000/0000-00', { reverse: true });
-    $("#placa").mask("AAA-9A99")
+    $("#placa").mask("AAA-9A99", { placeholder: "" });
+    $("#buscaPlaca").mask("AAA-9A99", { placeholder: "" });
+
+    // $('input[name=buscaPlaca]').mask('AAA-0U00', {
+    //     translation: {
+    //         'A': {
+    //             pattern: /[A-Za-z]/
+    //         },
+    //         'U': {
+    //             pattern: /[A-Za-z0-9]/
+    //         },
+    //     },
+    //     onKeyPress: function(value, e, field, options) {
+    //         // Convert to uppercase
+    //         e.currentTarget.value = value.toUpperCase();
+
+    //         // Get only valid characters
+    //         let val = value.replace(/[^\w]/g, '');
+
+    //         // Detect plate format
+    //         let isNumeric = !isNaN(parseFloat(val[4])) && isFinite(val[4]);
+    //         let mask = 'AAA 0U00';
+    //         if (val.length > 4 && isNumeric) {
+    //             mask = 'AAA-0000';
+    //         }
+    //         $(field).mask(mask, options);
+    //         $('#modal-carro').modal('show');
+    //     }
+    // });
 });
 
 
@@ -255,9 +283,9 @@ $(document).ready(function () {
 
     // Busca Placa
     function buscaPlaca(placa) {
-        var ndocumento = placa.replace('-', '').toLocaleUpperCase();
+        //var ndocumento = placa.replace('-', '').toLocaleUpperCase();
 
-        if (validarPlaca(ndocumento)) {
+        if (validarPlaca(placa)) {
             //Preenche os campos com "..." enquanto consulta webservice.
             $("#carro").val("...");
             $("#montadora").val("...");
@@ -268,11 +296,11 @@ $(document).ready(function () {
             $("#chassi").val("...");
             $("#municipio").val("...");
             $("#uf").val("...");
-            $("#status").val("...");
+            $("#statusPlaca").val("...");
 
             //Consulta o webservice receitaws.com.br/
             $.ajax({
-                url: "https://apicarros.com/v2/consultas/" + ndocumento + "/f63e1e63dd231083d38ce929984aac7d",
+                url: "https://apicarros.com/v2/consultas/" + placa + "/f63e1e63dd231083d38ce929984aac7d",
                 dataType: 'json',
                 crossDomain: true,
                 //contentType: "text/javascript",
@@ -313,8 +341,9 @@ $(document).ready(function () {
                         $("#chassi").val(chassi);
                         $("#municipio").val(capitalizeFirstLetter(dados.municipio));
                         $("#uf").val(dados.uf);
-                        $("#status").val(capitalizeFirstLetter(dados.situacao));
+                        $("#statusPlaca").val(capitalizeFirstLetter(dados.situacao));
                         //document.getElementById("nomeCliente").focus();
+                        
                     } //end if.
                     else {
                         //Placa pesquisada não foi encontrada.
@@ -326,11 +355,11 @@ $(document).ready(function () {
                         $("#chassi").val("");
                         $("#municipio").val("");
                         $("#uf").val("");
-                        $("#status").val("");
-
+                        $("#statusPlaca").val("");
+                        $('#modal-carro').modal('hide');
                         Swal.fire({
                             type: "warning",
-                            title: "Atenção (" + ndocumento + ")",
+                            title: "Atenção (" + placa + ")",
                             text: "Placa não encontrada."
                         });
                     }
@@ -345,17 +374,18 @@ $(document).ready(function () {
                     $("#chassi").val("");
                     $("#municipio").val("");
                     $("#uf").val("");
-                    $("#status").val("");
-
+                    $("#statusPlaca").val("");
+                    $('#modal-carro').modal('hide');
                     Swal.fire({
-                        type: "warning",
-                        title: "Atenção (" + ndocumento + ")",
+                        type: "error",
+                        title: "Atenção (" + placa + ")",
                         text: "Erro: Placa não encontrada."
                     });
                 },
                 timeout: 2000,
             });
         } else {
+            $('#modal-carro').modal('hide');
             Swal.fire({
                 type: "warning",
                 title: "Atenção",
@@ -365,8 +395,8 @@ $(document).ready(function () {
     };
     $('#buscar_info_placa').on('click', function () {
         //Nova variável "ndocumento" somente com dígitos.
-        var ndocumento = $('#placa').val().replace('-', '').toLocaleUpperCase();
-        buscaPlaca(ndocumento);
+        var placa = $('#placa').val().replace('-', '').toLocaleUpperCase();
+        buscaPlaca(placa);
     });
 
     function validarPlaca(placa) {
