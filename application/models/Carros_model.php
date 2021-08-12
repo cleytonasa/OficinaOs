@@ -36,6 +36,13 @@ class Carros_model extends CI_Model
         return $this->db->get('carros')->row();
     }
 
+    public function getByPlaca($placa)
+    {
+        $this->db->where('placa', $placa);
+        $this->db->limit(1);
+        return $this->db->get('carros')->row();
+    }
+
     public function add($table, $data)
     {
         $this->db->insert($table, $data);
@@ -107,20 +114,21 @@ class Carros_model extends CI_Model
 
     public function validaPlacaJaAssociadaACliente($data)
     {
-        //echo json_encode($data);
         $this->db->select('*');
         $this->db->limit(5);
-        $this->db->like('placa', $data['placa']);
+        $this->db->like('placa', str_replace('-', '', $data['placa']));
         //$this->db->join('clientes', 'clientes.idClientes = carros.idClientes');
         $query = $this->db->get('carros');
         if ($query->num_rows() > 0) {
-            foreach ($query->result_array() as $row) {
-                $row_set[] = ['label' => $row['carro'] . ' | placa: ' . $row['placa'] . ' | montadora: ' . $row['montadora'], 'id' => $row['idCarros'], 'placaExiste' => ['sim']];
-            }
-            echo json_encode($row_set);
+            // foreach ($query->result_array() as $row) {
+            //     $row_set[] = ['label' => $row['carro'] . ' | placa: ' . $row['placa'] . ' | montadora: ' . $row['montadora'], 'id' => $row['idCarros'], 'placaExiste' => ['sim']];
+            // }
+            // echo json_encode($row_set);
+            return true;
         } else {
-            $row_set[] = ['label' => ['carro'] . ' | placa: ' . ['placa'] . ' | montadora: ' . ['montadora'], 'id' => ['idCarros'], 'placaExiste' => ['não']];
-            echo json_encode($row_set);
+            // $row_set[] = ['label' => ['carro'] . ' | placa: ' . ['placa'] . ' | montadora: ' . ['montadora'], 'id' => ['idCarros'], 'placaExiste' => ['não']];
+            // echo json_encode($row_set);
+            return false;
         }
     }
 }

@@ -55,8 +55,8 @@
 
             <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vGarantia')) : ?>
                 <li class="bg_ls">
-                    <a href="<?= base_url() ?>index.php/garantias"><i class="fas fa-book" style="font-size:36px"></i>
-                        <div>Termo Garantia <span class="badge badge-light">F7</span></div>
+                    <a href="<?= base_url() ?>index.php/carros"><i class="fas fa-car" style="font-size:36px"></i>
+                        <div>Carros <span class="badge badge-light">F7</span></div>
                     </a>
                 </li>
             <?php endif ?>
@@ -185,10 +185,10 @@
                                     </td>
 
                                     <td><?php if ($o->dataFinal != null) {
-    echo date('d/m/Y', strtotime($o->dataFinal));
-} else {
-    echo "";
-} ?></td>
+                                            echo date('d/m/Y', strtotime($o->dataFinal));
+                                        } else {
+                                            echo "";
+                                        } ?></td>
 
                                     <td>
                                         <?= $o->nomeCliente ?>
@@ -382,37 +382,37 @@
                                 color: '#98CE00', //COR DO LADO POSITIVO DA BARRA "RECEITA LIQUIDA"
                                 negativeColor: '#00CED1', //COR DO LADO NEGATIVO DA BARRA "RECEITA LIQUIDA"
                                 data: [
-                                    [<?php echo($financeiro_mes->VALOR_JAN_REC - $financeiro_mes->VALOR_JAN_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_FEV_REC - $financeiro_mes->VALOR_FEV_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_MAR_REC - $financeiro_mes->VALOR_MAR_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_ABR_REC - $financeiro_mes->VALOR_ABR_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_MAI_REC - $financeiro_mes->VALOR_MAI_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_JUN_REC - $financeiro_mes->VALOR_JUN_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_JUL_REC - $financeiro_mes->VALOR_JUL_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_AGO_REC - $financeiro_mes->VALOR_AGO_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_SET_REC - $financeiro_mes->VALOR_SET_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_OUT_REC - $financeiro_mes->VALOR_OUT_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_NOV_REC - $financeiro_mes->VALOR_NOV_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_DEZ_REC - $financeiro_mes->VALOR_DEZ_DES); ?>]
+                                    [<?php echo ($financeiro_mes->VALOR_JAN_REC - $financeiro_mes->VALOR_JAN_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_FEV_REC - $financeiro_mes->VALOR_FEV_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_MAR_REC - $financeiro_mes->VALOR_MAR_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_ABR_REC - $financeiro_mes->VALOR_ABR_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_MAI_REC - $financeiro_mes->VALOR_MAI_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_JUN_REC - $financeiro_mes->VALOR_JUN_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_JUL_REC - $financeiro_mes->VALOR_JUL_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_AGO_REC - $financeiro_mes->VALOR_AGO_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_SET_REC - $financeiro_mes->VALOR_SET_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_OUT_REC - $financeiro_mes->VALOR_OUT_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_NOV_REC - $financeiro_mes->VALOR_NOV_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_DEZ_REC - $financeiro_mes->VALOR_DEZ_DES); ?>]
                                 ]
                             },
                             {
                                 name: 'Receita Bruta',
-                                color: '#5EB1BF',//COR DO LADO NEGATIVO DA BARRA "RECEITA BRUTA"
-                                negativeColor: '#D32D41',//COR DO LADO NEGATIVO DA BARRA "RECEITA BRUTA"
+                                color: '#5EB1BF', //COR DO LADO NEGATIVO DA BARRA "RECEITA BRUTA"
+                                negativeColor: '#D32D41', //COR DO LADO NEGATIVO DA BARRA "RECEITA BRUTA"
                                 data: [
-                                    [<?php echo($financeiro_mes->VALOR_JAN_REC); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_FEV_REC); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_MAR_REC); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_ABR_REC); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_MAI_REC); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_JUN_REC); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_JUL_REC); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_AGO_REC); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_SET_REC); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_OUT_REC); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_NOV_REC); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_DEZ_REC); ?>]
+                                    [<?php echo ($financeiro_mes->VALOR_JAN_REC); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_FEV_REC); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_MAR_REC); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_ABR_REC); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_MAI_REC); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_JUN_REC); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_JUL_REC); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_AGO_REC); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_SET_REC); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_OUT_REC); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_NOV_REC); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_DEZ_REC); ?>]
                                 ]
                             },
                             {
@@ -420,37 +420,37 @@
                                 color: '#D84727', //COR DO LADO POSITIVO DA BARRA "DESPESAS"
                                 negativeColor: '#5EB1BF', //COR DO LADO NEGATIVO DA BARRA "DESPESAS"
                                 data: [
-                                    [<?php echo($financeiro_mes->VALOR_JAN_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_FEV_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_MAR_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_ABR_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_MAI_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_JUN_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_JUL_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_AGO_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_SET_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_OUT_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_NOV_DES); ?>],
-                                    [<?php echo($financeiro_mes->VALOR_DEZ_DES); ?>]
+                                    [<?php echo ($financeiro_mes->VALOR_JAN_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_FEV_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_MAR_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_ABR_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_MAI_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_JUN_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_JUL_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_AGO_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_SET_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_OUT_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_NOV_DES); ?>],
+                                    [<?php echo ($financeiro_mes->VALOR_DEZ_DES); ?>]
                                 ]
                             },
                             {
                                 name: 'Inadimplência',
-                                color: '#EF7B45',//COR DO LADO POSITIVO DA BARRA "INADIMPLENCIA"
-                                negativeColor: '#D84727',//COR DO LADO NEGATIVO DA BARRA "INADIMPLENCIA"
+                                color: '#EF7B45', //COR DO LADO POSITIVO DA BARRA "INADIMPLENCIA"
+                                negativeColor: '#D84727', //COR DO LADO NEGATIVO DA BARRA "INADIMPLENCIA"
                                 data: [
-                                    [<?php echo($financeiro_mesinadipl->VALOR_JAN_REC); ?>],
-                                    [<?php echo($financeiro_mesinadipl->VALOR_FEV_REC); ?>],
-                                    [<?php echo($financeiro_mesinadipl->VALOR_MAR_REC); ?>],
-                                    [<?php echo($financeiro_mesinadipl->VALOR_ABR_REC); ?>],
-                                    [<?php echo($financeiro_mesinadipl->VALOR_MAI_REC); ?>],
-                                    [<?php echo($financeiro_mesinadipl->VALOR_JUN_REC); ?>],
-                                    [<?php echo($financeiro_mesinadipl->VALOR_JUL_REC); ?>],
-                                    [<?php echo($financeiro_mesinadipl->VALOR_AGO_REC); ?>],
-                                    [<?php echo($financeiro_mesinadipl->VALOR_SET_REC); ?>],
-                                    [<?php echo($financeiro_mesinadipl->VALOR_OUT_REC); ?>],
-                                    [<?php echo($financeiro_mesinadipl->VALOR_NOV_REC); ?>],
-                                    [<?php echo($financeiro_mesinadipl->VALOR_DEZ_REC); ?>]
+                                    [<?php echo ($financeiro_mesinadipl->VALOR_JAN_REC); ?>],
+                                    [<?php echo ($financeiro_mesinadipl->VALOR_FEV_REC); ?>],
+                                    [<?php echo ($financeiro_mesinadipl->VALOR_MAR_REC); ?>],
+                                    [<?php echo ($financeiro_mesinadipl->VALOR_ABR_REC); ?>],
+                                    [<?php echo ($financeiro_mesinadipl->VALOR_MAI_REC); ?>],
+                                    [<?php echo ($financeiro_mesinadipl->VALOR_JUN_REC); ?>],
+                                    [<?php echo ($financeiro_mesinadipl->VALOR_JUL_REC); ?>],
+                                    [<?php echo ($financeiro_mesinadipl->VALOR_AGO_REC); ?>],
+                                    [<?php echo ($financeiro_mesinadipl->VALOR_SET_REC); ?>],
+                                    [<?php echo ($financeiro_mesinadipl->VALOR_OUT_REC); ?>],
+                                    [<?php echo ($financeiro_mesinadipl->VALOR_NOV_REC); ?>],
+                                    [<?php echo ($financeiro_mesinadipl->VALOR_DEZ_REC); ?>]
                                 ]
                             }
                         ]
@@ -584,14 +584,14 @@
         $(document).ready(function() {
             var data = [
                 <?php foreach ($os as $o) {
-    echo "['" . $o->status . "', " . $o->total . "],";
-} ?>
+                    echo "['" . $o->status . "', " . $o->total . "],";
+                } ?>
 
             ];
             var plot1 = jQuery.jqplot('chart-os', [data], {
                 seriesDefaults: {
                     // Make this a pie chart.
-                    seriesColors: ['#ffb703','#fb8500','#219ebc','#023047','#8ecae6','#e76f51'], //COR DE CADA BARRA DO GRAFICO DE PIZZA "ESTATISTICAS DE OS", ALTERAR CONFORME ORDEM DE EXIBICAO
+                    seriesColors: ['#ffb703', '#fb8500', '#219ebc', '#023047', '#8ecae6', '#e76f51'], //COR DE CADA BARRA DO GRAFICO DE PIZZA "ESTATISTICAS DE OS", ALTERAR CONFORME ORDEM DE EXIBICAO
                     renderer: jQuery.jqplot.PieRenderer,
                     rendererOptions: {
                         // Put data labels on the pie slices.
@@ -615,7 +615,7 @@
 
 <?php if (isset($estatisticas_financeiro) && $estatisticas_financeiro != null && $this->permission->checkPermission($this->session->userdata('permissao'), 'rFinanceiro')) {
     if ($estatisticas_financeiro->total_receita != null || $estatisticas_financeiro->total_despesa != null || $estatisticas_financeiro->total_receita_pendente != null || $estatisticas_financeiro->total_despesa_pendente != null) {
-        ?>
+?>
         <script type="text/javascript">
             $(document).ready(function() {
 
@@ -649,7 +649,7 @@
                 ];
                 var plot3 = jQuery.jqplot('chart-financeiro2', [data3], {
 
-                        seriesColors: ["#90be6d", "#f94144", "#EAA228", "#579575", "#839557", "#958c12", "#953579", "#4b5de4", "#d8b83f", "#ff5800", "#0085cc"],//COR DAS BARRAS DO GRAFICO "ESTATISTICAS FINANCEIRAS PENDENTE"
+                        seriesColors: ["#90be6d", "#f94144", "#EAA228", "#579575", "#839557", "#958c12", "#953579", "#4b5de4", "#d8b83f", "#ff5800", "#0085cc"], //COR DAS BARRAS DO GRAFICO "ESTATISTICAS FINANCEIRAS PENDENTE"
                         seriesDefaults: {
                             // Make this a pie chart.
                             renderer: jQuery.jqplot.PieRenderer,
@@ -670,8 +670,8 @@
 
 
                 var data4 = [
-                    ['Total em Caixa', <?php echo($estatisticas_financeiro->total_receita - $estatisticas_financeiro->total_despesa); ?>],
-                    ['Total a Entrar', <?php echo($estatisticas_financeiro->total_receita_pendente - $estatisticas_financeiro->total_despesa_pendente); ?>]
+                    ['Total em Caixa', <?php echo ($estatisticas_financeiro->total_receita - $estatisticas_financeiro->total_despesa); ?>],
+                    ['Total a Entrar', <?php echo ($estatisticas_financeiro->total_receita_pendente - $estatisticas_financeiro->total_despesa_pendente); ?>]
                 ];
                 var plot4 = jQuery.jqplot('chart-financeiro-caixa', [data4], {
 

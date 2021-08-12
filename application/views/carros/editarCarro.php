@@ -133,9 +133,9 @@
                             </div>
                         </div>
                         <div class="control-group" class="control-label">
-                            <label for="status" class="control-label">Status</label>
+                            <label for="statusPlaca" class="control-label">Status</label>
                             <div class="controls">
-                                <input id="status" type="text" name="status" value="<?php echo $result->status; ?>" />
+                                <input id="statusPlaca" type="text" name="statusPlaca" value="<?php echo $result->status; ?>" />
                             </div>
                         </div>
                         <div class="form-actions">

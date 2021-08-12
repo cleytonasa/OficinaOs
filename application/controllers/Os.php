@@ -15,6 +15,7 @@ class Os extends MY_Controller
         parent::__construct();
         $this->load->helper('form');
         $this->load->model('os_model');
+        $this->load->model('carros_model');
         $this->data['menuOs'] = 'OS';
     }
 
@@ -129,11 +130,24 @@ class Os extends MY_Controller
             if (is_numeric($id = $this->os_model->add('os', $data, true))) {
                 $this->load->model('mapos_model');
                 $this->load->model('usuarios_model');
+                $this->load->model('carros_model');
 
                 $idOs = $id;
                 $os = $this->os_model->getById($idOs);
                 $emitente = $this->mapos_model->getEmitente()[0];
                 $tecnico = $this->usuarios_model->getById($os->usuarios_id);
+                // Carro
+                $placa = $this->input->post('Placa');
+                $carro = $this->carros_model->getByPlaca($placa);
+                $idCarro = $carro->idCarros;
+                $carro = '' . $carro->carro . ' | Placa: ' . $carro->placa . ' | Montadora: ' . $carro->montadora . '';
+
+                $dataCarro_Os = [
+                    'carro' => $carro,
+                    'os_id' => $idOs,
+                    'carros_id' => $idCarro
+                ];
+                $this->os_model->add('carros_os', $dataCarro_Os, true);
 
                 // Verificar configuração de notificação
                 if ($this->data['configuration']['os_notification'] != 'nenhum') {
@@ -348,6 +362,7 @@ class Os extends MY_Controller
         $this->load->model('mapos_model');
         $this->data['result'] = $this->os_model->getById($this->uri->segment(3));
         $this->data['produtos'] = $this->os_model->getProdutos($this->uri->segment(3));
+        $this->data['carros'] = $this->os_model->getCarros($this->uri->segment(3));
         $this->data['servicos'] = $this->os_model->getServicos($this->uri->segment(3));
         $this->data['emitente'] = $this->mapos_model->getEmitente();
         $this->data['qrCode'] = $this->os_model->getQrCode(
@@ -375,6 +390,7 @@ class Os extends MY_Controller
         $this->load->model('mapos_model');
         $this->data['result'] = $this->os_model->getById($this->uri->segment(3));
         $this->data['produtos'] = $this->os_model->getProdutos($this->uri->segment(3));
+        $this->data['carros'] = $this->os_model->getCarros($this->uri->segment(3));
         $this->data['servicos'] = $this->os_model->getServicos($this->uri->segment(3));
         $this->data['emitente'] = $this->mapos_model->getEmitente();
 
@@ -729,24 +745,61 @@ class Os extends MY_Controller
         //         ->set_output(json_encode($errors));
         // }
 
+        $placaFiltrada = strtoupper(str_replace('-', '', $this->input->post('placa')));
+        $idClientes = $this->input->post('clientes_id_carro');
         $data = [
-            'carro' => $this->input->post('carro'),
-            'os_id' => $this->input->post('idOsServico'),
-            'carros_id' => $this->input->post('idCarro'),
+            'idCliente' => $this->input->post('clientes_id_carro'),
+            'placa' => $placaFiltrada,
         ];
-
-        if ($this->os_model->add('carros_os', $data) == true) {
-            log_info('Adicionou carro a uma OS. ID (OS): ' . $this->input->post('idOsServico'));
-
-            return $this->output
-                ->set_content_type('application/json')
-                ->set_status_header(200)
-                ->set_output(json_encode(['result' => true]));
+        if ($this->carros_model->validaPlacaJaAssociadaACliente($data) == true) {
+            //echo 'Editando...';
+            $dataCarroEdit = [
+                'idClientes' => $idClientes,
+                'carro' => $this->input->post('carro'),
+                'montadora' => $this->input->post('montadora'),
+                'anoFabricacao' => $this->input->post('anoFabricacao'),
+                'dataAlteracao' => date('Y-m-d H:i:s')
+            ];
+            if ($this->carros_model->edit('carros', $dataCarroEdit, 'placa', $placaFiltrada) == true) {
+                //echo 'Editado...';
+                log_info('Editou Carro (' . $this->input->post('carro') . ') vinculado ao Cliente. ID (Cliente): ' . $this->input->post('clientes_id_carro'));
+                //echo json_encode(['result' => true, 'mensagem' => 'Carro editado com sucesso .']);
+                return $this->output
+                    ->set_content_type('application/json')
+                    ->set_status_header(200)
+                    ->set_output(json_encode(['result' => true]));
+                //return true;
+            } else {
+                //echo 'Editado... Erro';
+                return $this->output
+                    ->set_content_type('application/json')
+                    ->set_status_header(500)
+                    ->set_output(json_encode(['result' => false]));
+            }
         } else {
-            return $this->output
-                ->set_content_type('application/json')
-                ->set_status_header(500)
-                ->set_output(json_encode(['result' => false]));
+            //echo 'Adicionando...';
+            $dataCarro = [
+                'idClientes' => $this->input->post('clientes_id_carro'),
+                'placa' => $placaFiltrada,
+                'carro' => $this->input->post('carro'),
+                'montadora' => $this->input->post('montadora'),
+                'anoFabricacao' => $this->input->post('anoFabricacao'),
+            ];
+            if ($this->carros_model->add('carros', $dataCarro) == true) {
+                //echo 'Adicionado...';
+                log_info('Adicionou Carro (' . $this->input->post('carro') . ') a um Cliente. ID (Cliente): ' . $this->input->post('clientes_id_carro'));
+                return $this->output
+                    ->set_content_type('application/json')
+                    ->set_status_header(200)
+                    ->set_output(json_encode(['result' => true]));
+                //echo json_encode(['result' => true, 'mensagem' => 'Carro adicionado com sucesso .']);
+            } else {
+                return $this->output
+                    ->set_content_type('application/json')
+                    ->set_status_header(500)
+                    ->set_output(json_encode(['result' => false]));
+            }
+            //return false;
         }
     }
 

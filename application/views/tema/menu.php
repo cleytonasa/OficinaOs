@@ -22,6 +22,12 @@
                         }; ?>"><a href="<?= site_url('produtos') ?>"><i class="fas fa-shopping-bag"></i> <span>Produtos</span></a></li>
         <?php
         } ?>
+        <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vOs')) { ?>
+            <li class="<?php if (isset($menuNotas)) {
+                            echo 'active';
+                        }; ?>"><a href="<?= site_url('notas') ?>"><i class="fas fa-file-invoice-dollar"></i> <span>Notas</span></a></li>
+        <?php
+        } ?>
         <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vServico')) { ?>
             <li class="<?php if (isset($menuServicos)) {
                             echo 'active';
